@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import MapController from './MapController';
-import {compose, withStateHandlers} from 'recompose';
+import {compose} from 'recompose';
 import {
   withScriptjs,
   withGoogleMap,
@@ -19,10 +19,10 @@ const MapWithAMakredInfoWindow = compose(
       <Marker
         key={office.id}
         position={office.location}
-        onClick={props.onToggleOpen}
+        onClick={() => props.onMarkerToggleOpen(office)}
       >
         {office.isOpen && (
-          <InfoWindow>
+          <InfoWindow onCloseClick={() => props.onMarkerToggleOpen(office)}>
             <h4>{office.title}</h4>
           </InfoWindow>
         )}
@@ -81,18 +81,34 @@ class App extends Component {
     ]
   };
 
+  // Hundle marker toggle open.
+  hundleMarkerToggleOpen = office => {
+    const shownOffices = this.state.offices;
+
+    // Open the InfoWindow if it is not open.
+    if (!office.isOpen) {
+      shownOffices[shownOffices.indexOf(office)].isOpen = true;
+
+      // If it is open then close it.
+    } else {
+      shownOffices[shownOffices.indexOf(office)].isOpen = false;
+    }
+    this.setState({shownOffices});
+  };
+
   render() {
     let shownOffices = this.state.offices;
     return (
       <div className="App">
         <MapController />
         <MapWithAMakredInfoWindow
-          googleMapURL="https://maps.googleapis.com/maps/api/js?key=&v=3.exp&libraries=geometry,drawing,places"
+          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCf9K8ZWHmnyVPkp3IXfpdkazcbxsijquY&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{height: `100%`}} />}
           containerElement={<div style={{height: `800px`}} />}
           mapElement={<div style={{height: `100%`}} />}
           defaultCenter={this.state.defaultCenter}
           offices={shownOffices}
+          onMarkerToggleOpen={this.hundleMarkerToggleOpen}
         />
       </div>
     );
