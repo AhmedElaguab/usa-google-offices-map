@@ -35,6 +35,7 @@ class App extends Component {
   state = {
     defaultCenter: {lat: 39.9578777, lng: -108.8299901},
     isMarkerShown: true,
+    state: 'All',
     offices: [
       {
         title: 'Google Kirkland',
@@ -96,11 +97,23 @@ class App extends Component {
     this.setState({shownOffices});
   };
 
+  // Hundle state filter.
+  hundleStateFilter = state => {
+    this.setState({state});
+  };
+
   render() {
     let shownOffices = this.state.offices;
+
+    // Check if the markers have filtered.
+    if (this.state.state !== 'All') {
+      shownOffices = this.state.offices.filter(
+        office => office.state === this.state.state
+      );
+    }
     return (
       <div className="App">
-        <MapController />
+        <MapController onStateFilter={this.hundleStateFilter} />
         <MapWithAMakredInfoWindow
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCf9K8ZWHmnyVPkp3IXfpdkazcbxsijquY&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{height: `100%`}} />}

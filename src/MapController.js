@@ -7,7 +7,7 @@ class MapController extends Component {
       <div className="map-controller">
         <header>
           <h2>Google Offices in USA</h2>
-          <form onChange={e => this.props.onStateSubmit(e.target.value)}>
+          <form onChange={e => this.props.onStateFilter(e.target.value)}>
             <label htmlFor="select-state">Choose state:</label>
             <select name="State" id="select-state">
               <option value="All">All</option>
