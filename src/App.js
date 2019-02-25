@@ -104,7 +104,6 @@ class App extends Component {
 
   render() {
     let shownOffices = this.state.offices;
-
     // Check if the markers have filtered.
     if (this.state.state !== 'All') {
       shownOffices = this.state.offices.filter(
@@ -113,16 +112,22 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <MapController onStateFilter={this.hundleStateFilter} />
-        <MapWithAMakredInfoWindow
-          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCf9K8ZWHmnyVPkp3IXfpdkazcbxsijquY&v=3.exp&libraries=geometry,drawing,places"
-          loadingElement={<div style={{height: `100%`}} />}
-          containerElement={<div style={{height: `800px`}} />}
-          mapElement={<div style={{height: `100%`}} />}
-          defaultCenter={this.state.defaultCenter}
+        <MapController
+          onStateFilter={this.hundleStateFilter}
           offices={shownOffices}
           onMarkerToggleOpen={this.hundleMarkerToggleOpen}
         />
+        <div className="map">
+          <MapWithAMakredInfoWindow
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCf9K8ZWHmnyVPkp3IXfpdkazcbxsijquY&v=3.exp&libraries=geometry,drawing,places"
+            loadingElement={<div style={{height: `100%`}} />}
+            containerElement={<div style={{height: `800px`}} />}
+            mapElement={<div style={{height: `100%`}} />}
+            defaultCenter={this.state.defaultCenter}
+            offices={shownOffices}
+            onMarkerToggleOpen={this.hundleMarkerToggleOpen}
+          />
+        </div>
       </div>
     );
   }

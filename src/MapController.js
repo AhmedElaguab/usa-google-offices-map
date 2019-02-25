@@ -18,6 +18,15 @@ class MapController extends Component {
             </select>
           </form>
         </header>
+        <main>
+          <ul>
+            {this.props.offices.map(office => (
+              <li onClick={() => this.props.onMarkerToggleOpen(office)}>
+                {office.title}
+              </li>
+            ))}
+          </ul>
+        </main>
       </div>
     );
   }

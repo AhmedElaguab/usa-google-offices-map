@@ -1,0 +1,11 @@
+.App {
+  display: flex;
+}
+
+.map-controller {
+  width: 18%;
+}
+
+.map {
+  flex-grow: 1;
+}
