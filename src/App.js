@@ -40,6 +40,7 @@ class App extends Component {
       {
         title: 'Google Kirkland',
         location: {lat: 47.670189, lng: -122.197425},
+        // animation: google.maps.Animation.BOUNCE,
         state: 'Washington',
         isOpen: true,
         id: 0
@@ -47,6 +48,7 @@ class App extends Component {
       {
         title: 'Google Portland',
         location: {lat: 45.521622, lng: -122.677596},
+        // animation: google.maps.Animation.BOUNCE,
         state: 'Oregon',
         isOpen: false,
         id: 1
@@ -54,6 +56,7 @@ class App extends Component {
       {
         title: 'Google Building GWC1',
         location: {lat: 37.424135, lng: -122.09164},
+        // animation: google.maps.Animation.BOUNCE,
         state: 'California',
         isOpen: false,
         id: 2
@@ -61,6 +64,7 @@ class App extends Component {
       {
         title: 'Google Inc',
         location: {lat: 33.99564, lng: -118.477623},
+        // animation: google.maps.Animation.BOUNCE,
         state: 'California',
         isOpen: false,
         id: 3
@@ -68,6 +72,7 @@ class App extends Component {
       {
         title: 'Google San Diego',
         location: {lat: 32.90959, lng: -117.181879},
+        // animation: google.maps.Animation.BOUNCE,
         state: 'California',
         isOpen: false,
         id: 4
@@ -75,6 +80,7 @@ class App extends Component {
       {
         title: 'Google Thornton',
         location: {lat: 39.922389, lng: -104.983322},
+        // animation: google.maps.Animation.BOUNCE,
         state: 'Colorado',
         isOpen: false,
         id: 5
@@ -84,17 +90,17 @@ class App extends Component {
 
   // Hundle marker toggle open.
   hundleMarkerToggleOpen = office => {
-    const shownOffices = this.state.offices;
+    const offices = this.state.offices;
 
     // Open the InfoWindow if it is not open.
     if (!office.isOpen) {
-      shownOffices[shownOffices.indexOf(office)].isOpen = true;
+      offices[offices.indexOf(office)].isOpen = true;
 
       // If it is open then close it.
     } else {
-      shownOffices[shownOffices.indexOf(office)].isOpen = false;
+      offices[offices.indexOf(office)].isOpen = false;
     }
-    this.setState({shownOffices});
+    this.setState({offices});
   };
 
   // Hundle state filter.

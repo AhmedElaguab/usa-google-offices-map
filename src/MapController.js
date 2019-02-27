@@ -21,7 +21,10 @@ class MapController extends Component {
         <main>
           <ul>
             {this.props.offices.map(office => (
-              <li onClick={() => this.props.onMarkerToggleOpen(office)}>
+              <li
+                key={office.id}
+                onClick={() => this.props.onMarkerToggleOpen(office)}
+              >
                 {office.title}
               </li>
             ))}
