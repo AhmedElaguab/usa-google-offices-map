@@ -20,6 +20,7 @@ const MapWithAMakredInfoWindow = compose(
         key={office.id}
         position={office.location}
         onClick={() => props.onMarkerToggleOpen(office)}
+        animation={office.animation}
       >
         {office.isOpen && (
           <InfoWindow onCloseClick={() => props.onMarkerToggleOpen(office)}>
@@ -40,7 +41,7 @@ class App extends Component {
       {
         title: 'Google Kirkland',
         location: {lat: 47.670189, lng: -122.197425},
-        // animation: google.maps.Animation.BOUNCE,
+        animation: null,
         state: 'Washington',
         isOpen: true,
         id: 0
@@ -48,7 +49,7 @@ class App extends Component {
       {
         title: 'Google Portland',
         location: {lat: 45.521622, lng: -122.677596},
-        // animation: google.maps.Animation.BOUNCE,
+        animation: null,
         state: 'Oregon',
         isOpen: false,
         id: 1
@@ -56,7 +57,7 @@ class App extends Component {
       {
         title: 'Google Building GWC1',
         location: {lat: 37.424135, lng: -122.09164},
-        // animation: google.maps.Animation.BOUNCE,
+        animation: null,
         state: 'California',
         isOpen: false,
         id: 2
@@ -64,7 +65,7 @@ class App extends Component {
       {
         title: 'Google Inc',
         location: {lat: 33.99564, lng: -118.477623},
-        // animation: google.maps.Animation.BOUNCE,
+        animation: null,
         state: 'California',
         isOpen: false,
         id: 3
@@ -72,7 +73,7 @@ class App extends Component {
       {
         title: 'Google San Diego',
         location: {lat: 32.90959, lng: -117.181879},
-        // animation: google.maps.Animation.BOUNCE,
+        animation: null,
         state: 'California',
         isOpen: false,
         id: 4
@@ -80,7 +81,7 @@ class App extends Component {
       {
         title: 'Google Thornton',
         location: {lat: 39.922389, lng: -104.983322},
-        // animation: google.maps.Animation.BOUNCE,
+        animation: null,
         state: 'Colorado',
         isOpen: false,
         id: 5
@@ -91,15 +92,28 @@ class App extends Component {
   // Hundle marker toggle open.
   hundleMarkerToggleOpen = office => {
     const offices = this.state.offices;
+    const toggledOffice = office;
 
     // Open the InfoWindow if it is not open.
     if (!office.isOpen) {
-      offices[offices.indexOf(office)].isOpen = true;
+      toggledOffice.animation = 1;
+      toggledOffice.isOpen = true;
+      offices[offices.indexOf(office)] = toggledOffice;
+
+      // Stop animation after 2 seconds.
+      setTimeout(() => {
+        toggledOffice.animation = null;
+        offices[offices.indexOf(office)] = toggledOffice;
+        this.setState({offices});
+      }, 2100);
 
       // If it is open then close it.
     } else {
-      offices[offices.indexOf(office)].isOpen = false;
+      toggledOffice.animation = null;
+      toggledOffice.isOpen = false;
+      offices[offices.indexOf(office)] = toggledOffice;
     }
+
     this.setState({offices});
   };
 
