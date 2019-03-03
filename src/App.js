@@ -24,7 +24,9 @@ const MapWithAMakredInfoWindow = compose(
       >
         {office.isOpen && (
           <InfoWindow onCloseClick={() => props.onMarkerToggleOpen(office)}>
-            <h4>{office.title}</h4>
+            <div>
+              <h4>{office.title}</h4>
+            </div>
           </InfoWindow>
         )}
       </Marker>
