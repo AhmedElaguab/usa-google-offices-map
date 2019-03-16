@@ -14,7 +14,6 @@ class MapController extends Component {
               <option value="Washington">Washington</option>
               <option value="Oregon">Oregon</option>
               <option value="California">California</option>
-              <option value="Colorado">Colorado</option>
             </select>
           </form>
         </header>

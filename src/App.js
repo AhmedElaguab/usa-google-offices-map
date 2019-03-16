@@ -24,7 +24,7 @@ const MapWithAMakredInfoWindow = compose(
       >
         {office.isOpen && (
           <InfoWindow onCloseClick={() => props.onMarkerToggleOpen(office)}>
-            <div>
+            <div className={'infowindow-' + office.city}>
               <h4>{office.title}</h4>
             </div>
           </InfoWindow>
@@ -45,6 +45,8 @@ class App extends Component {
         location: {lat: 47.670189, lng: -122.197425},
         animation: null,
         state: 'Washington',
+        city: 'Kirkland',
+        city_state: 'Kirkland, Washington',
         isOpen: true,
         id: 0
       },
@@ -53,6 +55,8 @@ class App extends Component {
         location: {lat: 45.521622, lng: -122.677596},
         animation: null,
         state: 'Oregon',
+        city: 'Portland',
+        city_state: 'Portland, Oregon',
         isOpen: false,
         id: 1
       },
@@ -61,6 +65,8 @@ class App extends Component {
         location: {lat: 37.424135, lng: -122.09164},
         animation: null,
         state: 'California',
+        city: 'Mountain_View',
+        city_state: 'Mountain View, California',
         isOpen: false,
         id: 2
       },
@@ -69,6 +75,8 @@ class App extends Component {
         location: {lat: 33.99564, lng: -118.477623},
         animation: null,
         state: 'California',
+        city: 'Los_Angeles',
+        city_state: 'Los Angeles',
         isOpen: false,
         id: 3
       },
@@ -77,16 +85,10 @@ class App extends Component {
         location: {lat: 32.90959, lng: -117.181879},
         animation: null,
         state: 'California',
+        city: 'San_Diego',
+        city_state: 'San Diego',
         isOpen: false,
         id: 4
-      },
-      {
-        title: 'Google Thornton',
-        location: {lat: 39.922389, lng: -104.983322},
-        animation: null,
-        state: 'Colorado',
-        isOpen: false,
-        id: 5
       }
     ]
   };
@@ -108,6 +110,21 @@ class App extends Component {
         offices[offices.indexOf(office)] = toggledOffice;
         this.setState({offices});
       }, 2100);
+
+      fetch(
+        'https://en.wikipedia.org/w/api.php?&origin=*&action=opensearch&search=' +
+          office.city_state +
+          '&limit=1'
+      )
+        .then(resp => {
+          console.log(resp);
+          return resp.json();
+        })
+        .then(data => {
+          console.log(data);
+          document.querySelector('.infowindow-' + office.city).innerHTML +=
+            '<p>' + data[2] + '</p>';
+        });
 
       // If it is open then close it.
     } else {
