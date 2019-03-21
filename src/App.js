@@ -26,6 +26,7 @@ const MapWithAMakredInfoWindow = compose(
           <InfoWindow onCloseClick={() => props.onMarkerToggleOpen(office)}>
             <div className={'infowindow-' + office.city}>
               <h4>{office.title}</h4>
+              <h5>About City of Location:</h5>
             </div>
           </InfoWindow>
         )}
@@ -46,8 +47,9 @@ class App extends Component {
         animation: null,
         state: 'Washington',
         city: 'Kirkland',
-        city_state: 'Kirkland, Washington',
-        isOpen: true,
+        //city_state: 'Kirkland, Washington',
+        city_state: 'Kirklandddddddddddddddd',
+        isOpen: false,
         id: 0
       },
       {
@@ -117,13 +119,20 @@ class App extends Component {
           '&limit=1'
       )
         .then(resp => {
-          console.log(resp);
           return resp.json();
         })
         .then(data => {
-          console.log(data);
-          document.querySelector('.infowindow-' + office.city).innerHTML +=
-            '<p>' + data[2] + '</p>';
+          if (data[2].length) {
+            setTimeout(() => {
+              document.querySelector('.infowindow-' + office.city).innerHTML +=
+                '<p>' + data[2] + '</p>';
+            }, 500);
+          } else {
+            setTimeout(() => {
+              document.querySelector('.infowindow-' + office.city).innerHTML +=
+                '<p> No information </p>';
+            }, 500);
+          }
         });
 
       // If it is open then close it.
