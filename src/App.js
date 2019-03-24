@@ -14,7 +14,7 @@ const MapWithAMakredInfoWindow = compose(
   withScriptjs,
   withGoogleMap
 )(props => (
-  <GoogleMap defaultZoom={5} defaultCenter={props.defaultCenter}>
+  <GoogleMap defaultZoom={4} defaultCenter={props.defaultCenter}>
     {props.offices.map(office => (
       <Marker
         key={office.id}
@@ -37,7 +37,7 @@ const MapWithAMakredInfoWindow = compose(
 
 class App extends Component {
   state = {
-    defaultCenter: {lat: 39.9578777, lng: -108.8299901},
+    defaultCenter: {lat: 40.9578777, lng: -118.8299901},
     isMarkerShown: true,
     state: 'All',
     offices: [
@@ -47,8 +47,7 @@ class App extends Component {
         animation: null,
         state: 'Washington',
         city: 'Kirkland',
-        //city_state: 'Kirkland, Washington',
-        city_state: 'Kirklandddddddddddddddd',
+        city_state: 'Kirkland, Washington',
         isOpen: false,
         id: 0
       },
@@ -182,9 +181,9 @@ class App extends Component {
         />
         <div className="map">
           <MapWithAMakredInfoWindow
-            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCf9K8ZWHmnyVPkp3IXfpdkazcbxsijquY&v=3.exp&libraries=geometry,drawing,places"
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key&v=3.exp&libraries=geometry,drawing,places"
             loadingElement={<div style={{height: `100%`}} />}
-            containerElement={<div style={{height: `800px`}} />}
+            containerElement={<div style={{height: `100%`}} />}
             mapElement={<div style={{height: `100%`}} />}
             defaultCenter={this.state.defaultCenter}
             offices={shownOffices}
