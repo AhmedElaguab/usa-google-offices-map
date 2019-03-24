@@ -23,6 +23,8 @@ class MapController extends Component {
               <li
                 key={office.id}
                 onClick={() => this.props.onMarkerToggleOpen(office)}
+                onKeyUp={e => this.props.onSpaceKeyPress(e, office, this)}
+                tabIndex="0"
               >
                 {office.title}
               </li>

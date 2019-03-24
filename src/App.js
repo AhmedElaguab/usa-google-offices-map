@@ -25,8 +25,8 @@ const MapWithAMakredInfoWindow = compose(
         {office.isOpen && (
           <InfoWindow onCloseClick={() => props.onMarkerToggleOpen(office)}>
             <div className={'infowindow-' + office.city}>
-              <h3>{office.title}</h3>
-              <h4>About City of Location:</h4>
+              <h3 tabIndex="0">{office.title}</h3>
+              <h4 tabIndex="0">About City of Location:</h4>
             </div>
           </InfoWindow>
         )}
@@ -124,18 +124,19 @@ class App extends Component {
         .then(data => {
           if (data[2].length) {
             setTimeout(() => {
-              document.querySelector('.infowindow-' + office.city).innerHTML +=
-                '<p>' +
-                data[2] +
-                '<br><span><strong>Source:</strong> <a href="' +
-                data[3] +
-                '">Wikipedia</a></span></p>';
-            }, 500);
+              document.querySelector(
+                '.infowindow-' + office.city
+              ).innerHTML += `<p tabindex="0">${
+                data[2]
+              }<br><span><strong>Source:</strong> <a href="${
+                data[3]
+              }" target="_blank" aria-label="Read more from Wikipedia">Wikipedia</a></span></p>`;
+            }, 50);
           } else {
             setTimeout(() => {
               document.querySelector('.infowindow-' + office.city).innerHTML +=
-                '<p> No information </p>';
-            }, 500);
+                '<p tabindex="0"> No information </p>';
+            }, 50);
           }
         });
 
@@ -147,6 +148,15 @@ class App extends Component {
     }
 
     this.setState({offices});
+  };
+
+  // On space key pressed. for Accessibility.
+  onSpaceKeyPress = (event, office, _this) => {
+    // if the pressed key is Space
+    if (event.which === 32) {
+      // Then open the related InfoWindow.
+      _this.props.onMarkerToggleOpen(office);
+    }
   };
 
   // Hundle state filter.
@@ -168,6 +178,7 @@ class App extends Component {
           onStateFilter={this.hundleStateFilter}
           offices={shownOffices}
           onMarkerToggleOpen={this.hundleMarkerToggleOpen}
+          onSpaceKeyPress={this.onSpaceKeyPress}
         />
         <div className="map">
           <MapWithAMakredInfoWindow
