@@ -25,8 +25,8 @@ const MapWithAMakredInfoWindow = compose(
         {office.isOpen && (
           <InfoWindow onCloseClick={() => props.onMarkerToggleOpen(office)}>
             <div className={'infowindow-' + office.city}>
-              <h4>{office.title}</h4>
-              <h5>About City of Location:</h5>
+              <h3>{office.title}</h3>
+              <h4>About City of Location:</h4>
             </div>
           </InfoWindow>
         )}
@@ -125,7 +125,11 @@ class App extends Component {
           if (data[2].length) {
             setTimeout(() => {
               document.querySelector('.infowindow-' + office.city).innerHTML +=
-                '<p>' + data[2] + '</p>';
+                '<p>' +
+                data[2] +
+                '<br><span><strong>Source:</strong> <a href="' +
+                data[3] +
+                '">Wikipedia</a></span></p>';
             }, 500);
           } else {
             setTimeout(() => {
