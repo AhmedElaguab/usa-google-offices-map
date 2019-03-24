@@ -1,4 +1,13 @@
+# USA Google Offices Map
+
+A web-based app shows some of Google offices in USA using React, Google Maps API and react-google-maps.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Get started
+To get started developing right away:
+
+- install all project dependencies with `npm install`
+- start the development server with `npm start`
 
 ## Available Scripts
 
@@ -37,32 +46,20 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Built With
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- HTML/CSS
+- JavaScript
+- [React](https://reactjs.org/)
+- [create-react-app](https://github.com/facebook/create-react-app)
+- [react-google-maps](https://tomchentw.github.io/react-google-maps/#introduction)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contributing
 
-### Code Splitting
+This repository is my code to pass the fifth Project of Udacity Front-End Developer Nanodegree Program (Term 2). Therefore, I most likely will not accept pull requests.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
 
-### Analyzing the Bundle Size
+## Authors
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- **[AhmedElaguab](https://github.com/AhmedElaguab)** - development
